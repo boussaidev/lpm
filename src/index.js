@@ -220,10 +220,21 @@ async function getDependencyPaths(dependencyNames, customRootDir) {
       if (versions.length > 0) {
         // Sort versions by semver and get latest
         const sorted = versions.sort((a, b) => {
-          // Clean versions before comparing
-          const cleanA = semver.clean(a.version) || a.version;
-          const cleanB = semver.clean(b.version) || b.version;
-          return semver.compare(cleanA, cleanB);
+          try {
+            // Clean and parse versions before comparing
+            const cleanA = semver.clean(a.version) || a.version;
+            const cleanB = semver.clean(b.version) || b.version;
+            
+            // Handle complex version ranges
+            const validA = semver.valid(cleanA) || semver.minVersion(cleanA);
+            const validB = semver.valid(cleanB) || semver.minVersion(cleanB);
+            
+            if (!validA || !validB) return 0;
+            return semver.compare(validA, validB);
+          } catch (err) {
+            console.log(`${chalk.yellow('warn')} Invalid version comparison: ${a.version} vs ${b.version}`);
+            return 0;
+          }
         });
         const latest = sorted[sorted.length - 1];
         
