@@ -176,6 +176,8 @@ async function getDependencyPaths(dependencyNames, customRootDir) {
                   version: foundVersion,
                 });
                 seenDeps.set(depKey, true);
+                // Return early after finding first match
+                return matches;
               } catch (err) {
                 continue;
               }
@@ -191,7 +193,14 @@ async function getDependencyPaths(dependencyNames, customRootDir) {
         }
       })
     );
-    results.push(...batchResults.flat());
+
+    const flatResults = batchResults.flat();
+    if (flatResults.length > 0) {
+      // If we found matches, add them and stop searching
+      results.push(...flatResults);
+      break;
+    }
+    results.push(...flatResults);
   }
   
   processSpinner.succeed(chalk.green('🚀 Package analysis complete!'));
