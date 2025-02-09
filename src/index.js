@@ -185,7 +185,7 @@ async function getDependencyPaths(dependencyNames, customRootDir) {
                     seenDeps.set(depName, []);
                   }
                   seenDeps.get(depName).push({
-                    version: foundVersion,
+                    version: foundVersion.replace(/[\^~]/, ''), // Remove ^ and ~ from version
                     path: nodeModulesPath
                   });
                 } else {
@@ -219,7 +219,12 @@ async function getDependencyPaths(dependencyNames, customRootDir) {
     for (const [depName, versions] of seenDeps.entries()) {
       if (versions.length > 0) {
         // Sort versions by semver and get latest
-        const sorted = versions.sort((a, b) => semver.compare(a.version, b.version));
+        const sorted = versions.sort((a, b) => {
+          // Clean versions before comparing
+          const cleanA = semver.clean(a.version) || a.version;
+          const cleanB = semver.clean(b.version) || b.version;
+          return semver.compare(cleanA, cleanB);
+        });
         const latest = sorted[sorted.length - 1];
         
         flatResults.push({

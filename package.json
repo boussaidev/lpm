@@ -1,6 +1,6 @@
 {
   "name": "local-pm",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Local Package Manager - Install npm packages from your local system cache",
   "main": "src/index.js",
   "bin": {
