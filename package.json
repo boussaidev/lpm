@@ -1,10 +1,10 @@
 {
-  "name": "lpm",
+  "name": "local-pm",
   "version": "1.0.0",
   "description": "Local Package Manager - Install npm packages from your local system cache",
   "main": "src/index.js",
   "bin": {
-    "lpm": "./src/index.js"
+    "local-pm": "./src/index.js"
   },
   "type": "module",
   "scripts": {
@@ -43,5 +43,9 @@
   "bugs": {
     "url": "https://github.com/yourusername/lpm/issues"
   },
-  "homepage": "https://github.com/yourusername/lpm#readme"
+  "homepage": "https://github.com/yourusername/lpm#readme",
+  "files": [
+    "src",
+    "LICENSE"
+  ]
 }

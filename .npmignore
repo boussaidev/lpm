@@ -1,0 +1,41 @@
+# Development files
+.git/
+.gitignore
+.npmignore
+.DS_Store
+.idea/
+.vscode/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Test files
+test/
+coverage/
+.nyc_output/
+
+# Source control
+.git*
+.svn/
+.hg/
+.bzr/
+
+# Environment
+.env
+.env.*
+
+# Build tools
+webpack.config.js
+rollup.config.js
+.travis.yml
+.jenkins.yml
+.gitlab-ci.yml
+
+# Documentation
+docs/
+*.md
+!README.md 
