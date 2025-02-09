@@ -1,0 +1,47 @@
+{
+  "name": "lpm",
+  "version": "1.0.0",
+  "description": "Local Package Manager - Install npm packages from your local system cache",
+  "main": "src/index.js",
+  "bin": {
+    "lpm": "./src/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "package-manager",
+    "npm",
+    "yarn",
+    "pnpm",
+    "offline",
+    "local",
+    "cache",
+    "dependencies"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "boxen": "^8.0.1",
+    "chalk": "^5.4.1",
+    "figlet": "^1.8.0",
+    "find-up": "^7.0.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
+    "ora": "^8.2.0",
+    "tree-kill": "^1.2.2",
+    "yargs": "^17.7.2"
+  },
+  "engines": {
+    "node": ">=14.16"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yourusername/lpm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/lpm/issues"
+  },
+  "homepage": "https://github.com/yourusername/lpm#readme"
+}
